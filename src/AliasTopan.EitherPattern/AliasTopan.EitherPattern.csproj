@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>AliasTopan.EitherPattern</AssemblyName>
+    <RootNamespace>AliasTopan.EitherPattern</RootNamespace>
+    <PackageId>AliasTopan.EitherPattern</PackageId>
+    <Version>1.0.0-preview.1</Version>
+    <Authors>Taufan Augusta</Authors>
+    <Description>A dead-simple, functional-inspired result library for .NET featuring an `Either` type.</Description>
+    <PackageTags>result;either;functional;error-handling;</PackageTags>
+    <PackageProjectUrl>https://github.com/aliastopan/AliasTopan.EitherPattern</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/aliastopan/AliasTopan.EitherPattern.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+  <ItemGroup>
+      <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+</Project>
