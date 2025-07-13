@@ -1,3 +1,4 @@
 ﻿using AliasTopan.EitherPattern.HarnessTest.Tests;
 
-EitherTest.Run();
+// EitherTest.Run();
+NonGenericSuccessTypeTest.Run();
