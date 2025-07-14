@@ -6,15 +6,19 @@ public static class TransformTest
     {
         Console.WriteLine("# _TransformTest_");
 
-        ProxyConfig proxyCfg = new ProxyConfig("127.0.0.1", 8080);
-        // Either<ConfigError, ProxyConfig> eitherCfg = Either<ConfigError, ProxyConfig>.Error(new ConfigError("file not found!"));
-        Either<ConfigError, ProxyConfig> eitherCfg = Either<ConfigError, ProxyConfig>.Success(proxyCfg);
-
-        Either<ConfigError, string> eitherPort = eitherCfg
+        Either<ConfigError, string> getPortResult = GetProxyConfig()
             .Map(cfg => cfg.Port)
             .Map(port => $"port:{port}");
 
-        Console.WriteLine(eitherPort.ToString());
+        Console.WriteLine(getPortResult.ToString());
+    }
+
+    private static Either<ConfigError, ProxyConfig> GetProxyConfig()
+    {
+        ProxyConfig proxyCfg = new ProxyConfig("127.0.0.1", 8080);
+        // Either<ConfigError, ProxyConfig> eitherCfg = Either<ConfigError, ProxyConfig>.Error(new ConfigError("file not found!"));
+
+        return Either<ConfigError, ProxyConfig>.Success(proxyCfg);
     }
 }
 

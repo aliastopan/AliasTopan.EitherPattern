@@ -7,9 +7,9 @@ public static class EitherTest
         Console.WriteLine("# _EitherTest_");
 
         Guid targetId = Guid.CreateVersion7();
-        Either<LookUpError, LookUpDto> eitherLookUp = AccountLookUp(targetId);
+        Either<LookUpError, LookUpDto> accountLookUpResult = AccountLookUp(targetId);
 
-        LookUpResponse lookUpResponse = eitherLookUp.Match<LookUpResponse>(
+        LookUpResponse lookUpResponse = accountLookUpResult.Match<LookUpResponse>(
             onSuccess: accountFound =>
             {
                 return new LookUpResponse(200, accountFound.Username);
@@ -21,7 +21,6 @@ public static class EitherTest
         );
 
         Console.WriteLine($"LookUp: [{lookUpResponse.Code}] {lookUpResponse.Body}");
-
     }
 
     private static Either<LookUpError, LookUpDto> AccountLookUp(Guid lookUpId)

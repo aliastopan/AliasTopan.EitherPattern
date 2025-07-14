@@ -6,9 +6,9 @@ public static class NonGenericSuccessTypeTest
     {
         Console.WriteLine($"# _NonGenericSuccessTypeTest_");
 
-        Either<SaveError, Success> eitherSave = SaveUserSettings(isSaved: false);
+        Either<SaveError, Success> saveUserSettingsResult = SaveUserSettings(isSaved: false);
 
-        eitherSave.Match(
+        saveUserSettingsResult.Match(
             onSuccess: _ =>
             {
                 Console.WriteLine($"User setting saved");
