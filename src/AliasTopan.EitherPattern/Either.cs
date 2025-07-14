@@ -67,6 +67,13 @@ namespace AliasTopan.EitherPattern
                 : Either<TError, TNewSuccess>.Error(_error);
         }
 
+        public Either<TError, TNewSuccess> Then<TNewSuccess>(Func<TSuccess, Either<TError, TNewSuccess>> proceed)
+        {
+            return _isSuccess
+                ? proceed(_success)
+                : Either<TError, TNewSuccess>.Error(_error);
+        }
+
         public override string ToString()
         {
             return _isSuccess

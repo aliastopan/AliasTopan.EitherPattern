@@ -2,4 +2,5 @@
 
 // EitherTest.Run();
 // NonGenericSuccessTypeTest.Run();
-TransformTest.Run();
+// TransformTest.Run();
+ThenPatternTest.Run();
