@@ -60,6 +60,13 @@ namespace AliasTopan.EitherPattern
                 onError(_error);
         }
 
+        public Either<TError, TNewSuccess> Map<TNewSuccess>(Func<TSuccess, TNewSuccess> transfrom)
+        {
+            return _isSuccess
+                ? Either<TError, TNewSuccess>.Success(transfrom(_success))
+                : Either<TError, TNewSuccess>.Error(_error);
+        }
+
         public override string ToString()
         {
             return _isSuccess
