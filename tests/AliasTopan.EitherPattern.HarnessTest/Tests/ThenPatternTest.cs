@@ -38,8 +38,8 @@ public static class ThenPatternTest
         }
         else
         {
-            var error = new UsernameNotFoundError(username);
-            return Either<IAuthenticationError, User>.Error(error);
+            var userNotFoundErr = new UsernameNotFoundError(username);
+            return Either<IAuthenticationError, User>.Error(userNotFoundErr);
         }
     }
 
@@ -51,8 +51,8 @@ public static class ThenPatternTest
         }
         else
         {
-            var error = new IncorrectPasswordError();
-            return Either<IAuthenticationError, User>.Error(error);
+            var incorrectPasswordErr = new IncorrectPasswordError();
+            return Either<IAuthenticationError, User>.Error(incorrectPasswordErr);
         }
     }
 
@@ -65,8 +65,8 @@ public static class ThenPatternTest
         }
         else
         {
-            var error = new JwtGenerationError(Reason: "User has invalid Id");
-            return Either<IAuthenticationError, JwtToken>.Error(error);
+            var jwtGenerationErr = new JwtGenerationError(Reason: "User has invalid Id");
+            return Either<IAuthenticationError, JwtToken>.Error(jwtGenerationErr);
         }
     }
 }
