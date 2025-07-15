@@ -3,4 +3,5 @@
 // EitherTest.Run();
 // NonGenericSuccessTypeTest.Run();
 // TransformTest.Run();
-ThenPatternTest.Run();
+// ThenPatternTest.Run();
+await ThenPatternAsyncTest.Run();
