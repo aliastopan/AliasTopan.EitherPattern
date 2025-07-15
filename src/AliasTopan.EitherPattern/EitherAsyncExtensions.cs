@@ -5,6 +5,15 @@ namespace AliasTopan.EitherPattern
 {
     public static class EitherAsyncExtensions
     {
+        public static async Task<Either<TError, TNewSuccess>> MapAsync<TError, TSuccess, TNewSuccess>(
+            this Task<Either<TError, TSuccess>> eitherTask,
+            Func<TSuccess, TNewSuccess> transform)
+        {
+            Either<TError, TSuccess> either = await eitherTask;
+
+            return either.Map(transform);
+        }
+
         public static async Task<Either<TError, TNewSuccess>> ThenAsync<TError, TSuccess, TNewSuccess>(
             this Task<Either<TError, TSuccess>> eitherTask,
             Func<TSuccess, Task<Either<TError, TNewSuccess>>> proceedAsync)
