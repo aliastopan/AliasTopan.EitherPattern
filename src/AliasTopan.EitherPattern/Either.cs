@@ -74,6 +74,22 @@ namespace AliasTopan.EitherPattern
                 : Either<TError, TNewSuccess>.Error(_error);
         }
 
+        public Either<TError, TSuccess> Peek(Action<TSuccess> action)
+        {
+            if (_isSuccess)
+                action(_success);
+
+            return this;
+        }
+
+        public Either<TError, TSuccess> PeekError(Action<TError> action)
+        {
+            if (!_isSuccess)
+                action(_error);
+
+            return this;
+        }
+
         public override string ToString()
         {
             return _isSuccess

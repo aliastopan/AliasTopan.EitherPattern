@@ -22,18 +22,24 @@ public static class ThenPatternTest
 
     private static Either<IAuthenticationError, JwtToken> AuthenticateUser(string username, string loginPassword)
     {
-        var user = new User(37, username, "hashed_pw_123");
-
         return GetUser(username)
+                .Peek(user =>
+                {
+                    Console.WriteLine($"LOG: User.Email [{user.Email}]");
+                })
             .Then(user => VerifyPassword(user, loginPassword))
-            .Then(GenerateJwt);
+            .Then(GenerateJwt)
+                .Peek(token =>
+                {
+                    Console.WriteLine($"LOG: Jwt lifetime [{token.duration.Hours} hours]");
+                });
     }
 
     private static Either<IAuthenticationError, User> GetUser(string username)
     {
         if (username == "erasmus")
         {
-            var user = new User(37, username, "hashed_pw_123");
+            var user = new User(37, username, "hashed_pw_123", "erasmus@proton.me");
             return Either<IAuthenticationError, User>.Success(user);
         }
         else
@@ -60,7 +66,7 @@ public static class ThenPatternTest
     {
         if (user.Id > 0)
         {
-            var token = new JwtToken($"jwt_for_user_{user.Id}");
+            var token = new JwtToken($"jwt_for_user_{user.Id}", TimeSpan.FromHours(6));
             return Either<IAuthenticationError, JwtToken>.Success(token);
         }
         else
@@ -71,8 +77,8 @@ public static class ThenPatternTest
     }
 }
 
-public record User(int Id, string Username, string HashedPassword);
-public record JwtToken(string Value);
+public record User(int Id, string Username, string HashedPassword, string Email);
+public record JwtToken(string Value, TimeSpan duration);
 
 public interface IAuthenticationError
 {
