@@ -9,9 +9,12 @@
     <Authors>Taufan Augusta</Authors>
     <Description>A dead-simple, functional-inspired result library for .NET featuring an `Either` type.</Description>
     <PackageTags>result;either;functional;error-handling;</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/aliastopan/AliasTopan.EitherPattern</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aliastopan/AliasTopan.EitherPattern.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
       <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
