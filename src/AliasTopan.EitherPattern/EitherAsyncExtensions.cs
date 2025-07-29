@@ -15,6 +15,21 @@ namespace AliasTopan.EitherPattern
         }
 
         public static async Task<Either<TError, TNewSuccess>> ThenAsync<TError, TSuccess, TNewSuccess>(
+            this Either<TError, TSuccess> either, // note: operates on a synchronous 'Either'
+            Func<TSuccess, Task<Either<TError, TNewSuccess>>> thenAsyncFunc)
+        {
+            // use the simple, synchronous `Match` method to decide which path to take.
+            return await either.Match(
+                // ff the synchronous `Either` was a success, execute the new async function.
+                onSuccess: async successValue => await thenAsyncFunc(successValue),
+
+                // ff the synchronous `Either` was an error, do nothing and just forward
+                // the error, wrapping it in a completed `Task` to match the return type.
+                onError: errorValue => Task.FromResult(Either<TError, TNewSuccess>.Error(errorValue))
+            );
+        }
+
+        public static async Task<Either<TError, TNewSuccess>> ThenAsync<TError, TSuccess, TNewSuccess>(
             this Task<Either<TError, TSuccess>> eitherTask,
             Func<TSuccess, Task<Either<TError, TNewSuccess>>> proceedAsync)
         {
