@@ -6,7 +6,10 @@ public static class ThenPatternAsyncTest
     {
         Console.WriteLine("# _ThenPatternAsyncTest_");
 
-        Either<IAuthenticationError, JwtToken> authenticationResult = await AuthenticateUserAsync("erasmus", "password123");
+        Either<IAuthenticationError, JwtToken> authenticationResult;
+
+        // authenticationResult = await AuthenticateUserAsync_AsyncFirst("erasmus_async", "password123");
+        authenticationResult = await AuthenticateUserAsync_SynchronousFirst("erasmus_async", "password123");
 
         authenticationResult.Match(
             onSuccess: token =>
@@ -20,26 +23,55 @@ public static class ThenPatternAsyncTest
         );
     }
 
-    private static async Task<Either<IAuthenticationError, JwtToken>> AuthenticateUserAsync(string username, string loginPassword)
+    private static async Task<Either<IAuthenticationError, JwtToken>> AuthenticateUserAsync_AsyncFirst(string username, string loginPassword)
     {
-        return await GetUserAsync(username)
+        return await FirstGetUserAsync(username)
             .Then(user => VerifyPassword(user, loginPassword))
             .ThenAsync(GenerateJwtAsync)
                 .Peek(token =>
                 {
                     Console.WriteLine($"LOG: Jwt lifetime [{token.duration.Hours} hours]");
                 })
-                .PeekError(_ =>
+                .PeekError(error =>
                 {
-                    Console.WriteLine($"LOG: Something went wrong in JWT generation.");
+                    Console.WriteLine($"LOG: {error.Message}");
                 });
     }
 
-    private static async Task<Either<IAuthenticationError, User>> GetUserAsync(string username)
+    private static async Task<Either<IAuthenticationError, JwtToken>> AuthenticateUserAsync_SynchronousFirst(string username, string loginPassword)
+    {
+        return await FirstGetUser(username)
+            .Then(user => VerifyPassword(user, loginPassword))
+            .ThenAsync(GenerateJwtAsync)
+                .Peek(token =>
+                {
+                    Console.WriteLine($"LOG: Jwt lifetime [{token.duration.Hours} hours]");
+                })
+                .PeekError(error =>
+                {
+                    Console.WriteLine($"LOG: {error.Message}");
+                });
+    }
+
+    private static Either<IAuthenticationError, User> FirstGetUser(string username)
+    {
+        if (username == "erasmus")
+        {
+            var user = new User(37, username, "hashed_pw_123", "erasmus@proton.me");
+            return Either<IAuthenticationError, User>.Success(user);
+        }
+        else
+        {
+            var userNotFoundErr = new UsernameNotFoundError(username);
+            return Either<IAuthenticationError, User>.Error(userNotFoundErr);
+        }
+    }
+
+    private static async Task<Either<IAuthenticationError, User>> FirstGetUserAsync(string username)
     {
         await Task.CompletedTask;
 
-        if (username == "erasmus")
+        if (username == "erasmus_async")
         {
             var user = new User(-37, username, "hashed_pw_123", "erasmus@proton.me");
             return Either<IAuthenticationError, User>.Success(user);
@@ -70,7 +102,7 @@ public static class ThenPatternAsyncTest
 
         if (user.Id > 0)
         {
-            var token = new JwtToken($"jwt_for_user_{user.Id}", TimeSpan.FromHours(6));
+            var token = new JwtToken($"jwt_for_user_{user.Username}", TimeSpan.FromHours(6));
             return Either<IAuthenticationError, JwtToken>.Success(token);
         }
         else
