@@ -1,8 +1,8 @@
-namespace AliasTopan.EitherPattern.HarnessTest.Tests;
+namespace AliasTopan.EitherPattern.ManualTest.Tests;
 
 public static class ThenPatternAsyncTest
 {
-    public static async Task Run()
+    public static async Task RunTest()
     {
         Console.WriteLine("# _ThenPatternAsyncTest_");
 
@@ -21,6 +21,8 @@ public static class ThenPatternAsyncTest
                 Console.WriteLine($"Login failed. [{error.Message}]");
             }
         );
+
+        Console.Write("\n");
     }
 
     private static async Task<Either<IAuthenticationError, JwtToken>> AuthenticateUserAsync_AsyncFirst(string username, string loginPassword)

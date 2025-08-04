@@ -1,8 +1,8 @@
-namespace AliasTopan.EitherPattern.HarnessTest.Tests;
+namespace AliasTopan.EitherPattern.ManualTest.Tests;
 
 public static class TransformTest
 {
-    public static void Run()
+    public static void RunTest()
     {
         Console.WriteLine("# _TransformTest_");
 
@@ -11,6 +11,7 @@ public static class TransformTest
             .Map(port => $"port:{port}");
 
         Console.WriteLine(getPortResult.ToString());
+        Console.Write("\n");
     }
 
     private static Either<ConfigError, ProxyConfig> GetProxyConfig()

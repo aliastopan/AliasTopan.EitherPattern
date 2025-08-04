@@ -1,4 +1,4 @@
-namespace AliasTopan.EitherPattern.HarnessTest.Tests;
+namespace AliasTopan.EitherPattern.ManualTest.Tests;
 
 public static class ThenPatternTest
 {
@@ -18,6 +18,8 @@ public static class ThenPatternTest
                 Console.WriteLine($"Login failed. [{error.Message}]");
             }
         );
+
+        Console.Write("\n");
     }
 
     private static Either<IAuthenticationError, JwtToken> AuthenticateUser(string username, string loginPassword)

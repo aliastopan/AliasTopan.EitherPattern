@@ -1,8 +1,8 @@
-namespace AliasTopan.EitherPattern.HarnessTest.Tests;
+namespace AliasTopan.EitherPattern.ManualTest.Tests;
 
 public class TransformAsyncTest
 {
-    public static async Task Run()
+    public static async Task RunTest()
     {
         Console.WriteLine("# _TransformAsyncTest_");
 
@@ -11,6 +11,7 @@ public class TransformAsyncTest
             .MapAsync(port => $"port:{port}");
 
         Console.WriteLine(getPortResult.ToString());
+        Console.Write("\n");
     }
 
     private static async Task<Either<ConfigError, ProxyConfig>> GetProxyConfigAsync()

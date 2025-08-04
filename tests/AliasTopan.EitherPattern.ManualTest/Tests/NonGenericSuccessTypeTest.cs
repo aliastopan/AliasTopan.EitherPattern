@@ -1,8 +1,8 @@
-namespace AliasTopan.EitherPattern.HarnessTest.Tests;
+namespace AliasTopan.EitherPattern.ManualTest.Tests;
 
 public static class NonGenericSuccessTypeTest
 {
-    public static void Run()
+    public static void RunTest()
     {
         Console.WriteLine($"# _NonGenericSuccessTypeTest_");
 
@@ -18,6 +18,8 @@ public static class NonGenericSuccessTypeTest
                 Console.WriteLine($"Error: {error.Message}");
             }
         );
+
+        Console.Write("\n");
     }
 
     private static Either<SaveError, Success> SaveUserSettings(bool isSaved)

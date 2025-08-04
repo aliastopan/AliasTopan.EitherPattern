@@ -1,8 +1,8 @@
-namespace AliasTopan.EitherPattern.HarnessTest.Tests;
+namespace AliasTopan.EitherPattern.ManualTest.Tests;
 
 public static class EitherTest
 {
-    public static void Run()
+    public static void RunTest()
     {
         Console.WriteLine("# _EitherTest_");
 
@@ -21,6 +21,7 @@ public static class EitherTest
         );
 
         Console.WriteLine($"LookUp: [{lookUpResponse.Code}] {lookUpResponse.Body}");
+        Console.Write("\n");
     }
 
     private static Either<LookUpError, LookUpDto> AccountLookUp(Guid lookUpId)
