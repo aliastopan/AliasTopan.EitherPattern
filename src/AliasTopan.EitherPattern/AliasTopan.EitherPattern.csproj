@@ -6,7 +6,7 @@
     <PackageId>AliasTopan.EitherPattern</PackageId>
     <Version>1.0.0-preview.2</Version>
     <Authors>Taufan Augusta</Authors>
-    <Description>A dead-simple, functional-inspired result library for .NET featuring an `Either` type.</Description>
+    <Description>A dead-simple, functional-inspired result library for .NET featuring an Either type.</Description>
     <PackageTags>result;either;functional;error-handling;</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
