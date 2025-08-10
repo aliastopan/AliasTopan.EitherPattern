@@ -20,10 +20,10 @@ namespace AliasTopan.EitherPattern
         {
             // use the simple, synchronous `Match` method to decide which path to take.
             return await either.Match(
-                // ff the synchronous `Either` was a success, execute the new async function.
+                // if the synchronous `Either` was a success, execute the new async function.
                 onSuccess: async successValue => await thenAsyncFunc(successValue),
 
-                // ff the synchronous `Either` was an error, do nothing and just forward
+                // if the synchronous `Either` was an error, do nothing and just forward
                 // the error, wrapping it in a completed `Task` to match the return type.
                 onError: errorValue => Task.FromResult(Either<TError, TNewSuccess>.Error(errorValue))
             );
