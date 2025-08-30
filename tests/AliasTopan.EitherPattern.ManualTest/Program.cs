@@ -6,3 +6,4 @@ TransformTest.RunTest();
 ThenPatternTest.Run();
 await ThenPatternAsyncTest.RunTest();
 await TransformAsyncTest.RunTest();
+LazyEvaluationPatternTest.RunTest();
