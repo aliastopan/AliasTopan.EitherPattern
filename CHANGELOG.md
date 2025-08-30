@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.0-preview.3"></a>
+## [1.0.0-preview.3](https://www.github.com/aliastopan/AliasTopan.EitherPattern/releases/tag/v1.0.0-preview.3) (2025-08-31)
+
+### Features
+
+* lazy evaluation pattern ([2b3982c](https://www.github.com/aliastopan/AliasTopan.EitherPattern/commit/2b3982c18de5cd50cfe9049952d4c254e47e73c9))
+
 <a name="1.0.0-preview.2"></a>
 ## [1.0.0-preview.2](https://www.github.com/aliastopan/AliasTopan.EitherPattern/releases/tag/v1.0.0-preview.2) (2025-08-30)
 
