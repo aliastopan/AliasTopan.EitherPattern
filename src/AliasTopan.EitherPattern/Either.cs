@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace AliasTopan.EitherPattern
 {
@@ -30,8 +31,20 @@ namespace AliasTopan.EitherPattern
             return new Either<TError, TSuccess>(value);
         }
 
+        public static Either<TError, TSuccess> Success(Func<TSuccess> onSuccess)
+        {
+            TSuccess value = onSuccess.Invoke();
+            return new Either<TError, TSuccess>(value);
+        }
+
         public static Either<TError, TSuccess> Error(TError value)
         {
+            return new Either<TError, TSuccess>(value);
+        }
+
+        public static Either<TError, TSuccess> Error(Func<TError> onError)
+        {
+            TError value = onError.Invoke();
             return new Either<TError, TSuccess>(value);
         }
 
