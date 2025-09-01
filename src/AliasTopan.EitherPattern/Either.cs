@@ -80,6 +80,13 @@ namespace AliasTopan.EitherPattern
                 : Either<TError, TNewSuccess>.Error(_error);
         }
 
+        public Either<TNewError, TSuccess> MapError<TNewError>(Func<TError, TNewError> transform)
+        {
+            return _isSuccess
+                ? Either<TNewError, TSuccess>.Success(_success)
+                : Either<TNewError, TSuccess>.Error(transform(_error));
+        }
+
         public Either<TError, TNewSuccess> Then<TNewSuccess>(Func<TSuccess, Either<TError, TNewSuccess>> proceed)
         {
             return _isSuccess

@@ -1,3 +1,5 @@
+using System.Net.Http.Headers;
+
 namespace AliasTopan.EitherPattern.ManualTest.Tests;
 
 public static class TransformTest
@@ -11,6 +13,17 @@ public static class TransformTest
             .Map(port => $"port:{port}");
 
         Console.WriteLine(getPortResult.ToString());
+
+        // Transform both TError and TSuccess
+        Either<IOError, AppSettings> result = getPortResult
+            .MapError<IOError>(error => new IOError(error.Message))
+            .Map<AppSettings>(port =>
+                {
+                    Settings settings = new Settings("Server", "localhost", port);
+                    return new AppSettings(settings);
+                });
+
+        Console.WriteLine(result.ToString());
         Console.Write("\n");
     }
 
@@ -25,3 +38,8 @@ public static class TransformTest
 
 public record ConfigError(string Message);
 public record ProxyConfig(string Ip, int Port);
+
+public record IOError(string Message);
+public record AppSettings(Settings settings);
+
+public record Settings(string HostName, string Ip, string Port);
