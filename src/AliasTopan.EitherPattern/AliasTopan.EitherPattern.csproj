@@ -4,7 +4,7 @@
     <AssemblyName>AliasTopan.EitherPattern</AssemblyName>
     <RootNamespace>AliasTopan.EitherPattern</RootNamespace>
     <PackageId>AliasTopan.EitherPattern</PackageId>
-    <Version>1.0.0-preview.3</Version>
+    <Version>1.0.0-preview.4</Version>
     <Authors>Taufan Augusta</Authors>
     <Copyright>© 2025 Taufan Augusta</Copyright>
     <Description>A dead-simple, functional-inspired result library for .NET featuring an Either type.</Description>

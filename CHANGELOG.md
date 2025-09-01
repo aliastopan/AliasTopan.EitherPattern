@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.0-preview.4"></a>
+## [1.0.0-preview.4](https://www.github.com/aliastopan/AliasTopan.EitherPattern/releases/tag/v1.0.0-preview.4) (2025-09-02)
+
+### Features
+
+* add `MapError` method ([935ea3e](https://www.github.com/aliastopan/AliasTopan.EitherPattern/commit/935ea3e06f54ebb4c486618b2af18965eeb2af70))
+
 <a name="1.0.0-preview.3"></a>
 ## [1.0.0-preview.3](https://www.github.com/aliastopan/AliasTopan.EitherPattern/releases/tag/v1.0.0-preview.3) (2025-08-31)
 
