@@ -14,6 +14,15 @@ namespace AliasTopan.EitherPattern
             return either.Map(transform);
         }
 
+        public static async Task<Either<TNewError, TSuccess>> MapErrorAsync<TError, TNewError, TSuccess>(
+            this Task<Either<TError, TSuccess>> eitherTask,
+            Func<TError, TNewError> transform)
+        {
+            Either<TError, TSuccess> either = await eitherTask;
+
+            return either.MapError(transform);
+        }
+
         public static async Task<Either<TError, TNewSuccess>> ThenAsync<TError, TSuccess, TNewSuccess>(
             this Either<TError, TSuccess> either, // note: operates on a synchronous 'Either'
             Func<TSuccess, Task<Either<TError, TNewSuccess>>> thenAsyncFunc)
