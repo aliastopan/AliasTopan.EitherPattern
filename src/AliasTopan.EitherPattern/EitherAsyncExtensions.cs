@@ -5,6 +5,33 @@ namespace AliasTopan.EitherPattern
 {
     public static class EitherAsyncExtensions
     {
+        public static Task<TResult> MatchAsync<TError, TSuccess, TResult>(
+            this Either<TError, TSuccess> either,
+            Func<TSuccess, Task<TResult>> onSuccess,
+            Func<TError, Task<TResult>> onError)
+        {
+            if (onSuccess == null)
+                throw new ArgumentNullException(nameof(onSuccess));
+
+            if (onError == null)
+                throw new ArgumentNullException(nameof(onError));
+
+            return either.Match(onSuccess, onError);
+        }
+
+        public static Task MatchAsync<TError, TSuccess>(
+            this Either<TError, TSuccess> either,
+            Func<TSuccess, Task> onSuccess,
+            Func<TError, Task> onError)
+        {
+            if (onSuccess == null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onError == null)
+                throw new ArgumentNullException(nameof(onError));
+
+            return either.Match(onSuccess, onError);
+        }
+
         public static async Task<Either<TError, TNewSuccess>> MapAsync<TError, TSuccess, TNewSuccess>(
             this Task<Either<TError, TSuccess>> eitherTask,
             Func<TSuccess, TNewSuccess> transform)
