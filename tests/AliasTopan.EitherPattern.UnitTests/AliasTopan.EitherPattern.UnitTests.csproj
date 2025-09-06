@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>AliasTopan.EitherPattern.UnitTests</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="TUnit" Version="0.56.50" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AliasTopan.EitherPattern\AliasTopan.EitherPattern.csproj" />
+  </ItemGroup>
+</Project>
