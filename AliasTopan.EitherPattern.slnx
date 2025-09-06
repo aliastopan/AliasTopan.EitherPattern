@@ -8,7 +8,6 @@
     <Project Path="src/AliasTopan.EitherPattern/AliasTopan.EitherPattern.csproj" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="tests/AliasTopan.EitherPattern.ManualTest/AliasTopan.EitherPattern.ManualTest.csproj" />
     <Project Path="tests/AliasTopan.EitherPattern.UnitTests/AliasTopan.EitherPattern.UnitTests.csproj" />
   </Folder>
 </Solution>
