@@ -18,7 +18,7 @@ This library is built on a "dead-simple" philosophy. Business logic is complex e
 Install the package from the .NET CLI:
 
 ```sh
-dotnet add package AliasTopan.EitherPattern --version 1.0.0-preview.4
+dotnet add package AliasTopan.EitherPattern --version 1.0.0
 ```
 
 ## Core Concepts
